@@ -41,6 +41,44 @@ A wallet's list of transactions can be obtained with the `retrieve_txs` method w
 
 A wallet's balance can be obtained with the `retrieve_summary_info` method which is documented [here](https://docs.rs/grin_wallet_api/latest/grin_wallet_api/trait.OwnerRpc.html#tymethod.retrieve_summary_info), and an example of using it can be found [here](https://github.com/grincc/grin-wallet-api-tutorial#obtaining-wallet-balance).
 
+## View Wallet function
+
+ #rewind_hash and scan rewind_hash 
+
+Ensure the transparency (spending, receiving, balance etc) of a wallet that receive grin as donations.  
+
+Allow everyone to scan the rewind_hash of the wallet shared publicly.
+
+
+   - get the rewind_hash of the wallet
+
+   - scan of the rewind_hash of a third-party wallet
+```text
+get_rewind_hash: `grin-wallet rewind_hash`
+```
+
+```text
+scan_rewind_hash: `grin-wallet scan_rewind_hash 2c95b24de492395934a8a345440ed0ebbe67ee0025b348712a927a91c7fe58e9`
+```
+## account
+
+The `account` command is used to manage wallet accounts. Let's print a list of your existing accounts:
+```text
+grin-wallet account
+```
+Accounts could be thought of as somewhat similar to different bank accounts under the same name. Each account acts as a separate wallet, but they are all derived from the same master seed. The `default` account is created when you initialize the wallet.
+To create a new account, pass the argument `-c` `--create`.
+```text
+grin-wallet account -c jedusor
+```
+This will create a new account called 'jedusor'.
+All `grin-wallet` commands can then be passed the argument `-a` to specify an account for the command (otherwise `default` account is used), e.g:
+```text
+grin-wallet -a jedusor info
+```
+
+
+
 
 ## Node
 
